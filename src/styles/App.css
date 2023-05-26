@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+}
+
+.App {
+    width: 1000px;
+    margin: 100px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.BookForm {
+    margin-left: 30px;
+    max-width: 300px;
+}
+.books__rec {
+    margin-bottom: 40px;
+}
+.rec__title {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+/* Стили для каждой книги*/
+.Book {
+    font-size: 18px;
+    display: flex;
+    margin: 0 0 20px 45px;
+    max-width: 400px;
+    justify-content: space-between;
+}
+
+/* Кнопка удаления */
+.list-btn {
+    height: 50%;
+    align-self: center;
+    padding: 2px 10px;
+}
+
+.books__year {
+    font-size: 20px;
+}
