@@ -1,6 +1,7 @@
 import { Book } from "./Book";
 
 export const BooksByDate = ({ data }) => {
+
 	return (
 		<div>
 			<div>
@@ -9,7 +10,7 @@ export const BooksByDate = ({ data }) => {
 				</h3>
 				<div>
 					{data.books.map((book) => (
-						<Book key={book.id} book={book} />
+						<Book key={book.title} book={book} />
 					))}
 				</div>
 			</div>

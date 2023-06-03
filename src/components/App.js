@@ -1,18 +1,21 @@
-import { collection, onSnapshot } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { BookForm } from "./components/BookForm";
-import { Book } from "./components/Book";
-import { BooksList } from "./components/BooksList";
-import db from "./firebase-config";
+import { BookForm } from "./BookForm";
+import { Book } from "./Book";
+import { BooksList } from "./BooksList";
 
-import "./styles/App.css"
+import "../styles/App.css"
+import { onSnapshot, collection } from "firebase/firestore";
+import db from "../firebase-config";
 
 export const App = () => {
 	const [books, setBooks] = useState([]);
 	const [sortedBooks, setSortedBooks] = useState([]);
 	const [goodBook, setGoodBook] = useState(null);
 
-	// Получение книг с сервера
+	// useEffect(() => {
+	// 	fetchData(setBooks)
+	// }, []);
+
 	useEffect(() => {
 		onSnapshot(collection(db, "books"), (data) => {
 			const res = data.docs.map((el) => ({ ...el.data(), id: el.id }));
@@ -82,7 +85,8 @@ export const App = () => {
 	// Нахождение лучшей книги
 	useEffect(() => {
 		const year = new Date().getFullYear();
-		let goodBooks = books.filter((book) => year - book.year > 3);
+
+		let goodBooks = books.filter((book) => book.rating !== "" && year - book.year > 3);
 
 		const compare = (a, b) => {
 			if (a.rating > b.rating) {
@@ -113,7 +117,7 @@ export const App = () => {
 				</div>
 				{!!books.length && <BooksList data={sortedBooks} />}
 			</div>
-			<BookForm id={books.length} className={"BookForm"} />
+			<BookForm className={"BookForm"} />
 		</div>
 	);
 };
